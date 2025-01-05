@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+
 import { CategoryModel } from "../../data/mongo/model/category.model";
 import { CreateCategoryDto } from "../../domain/dtos/category/create-category.dto";
 import { UserEntity } from "../../domain/entities/user.entity";
@@ -14,7 +14,7 @@ export class CategoryService {
     async createCategory(createCategoryDto: CreateCategoryDto, user: UserEntity){
 
         const category = await CategoryModel.findOne({name: CreateCategoryDto.name});
-        console.log('user: ' + user.name);
+        
         if(category) throw CustomError.badRequest('Category already exists');
 
         try {
